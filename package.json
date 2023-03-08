@@ -1,0 +1,22 @@
+{
+  "name": "blsbot-discord",
+  "version": "1.0.0",
+  "description": "Aplicação para controler de Discord do grupo BLS.",
+  "main": "src/App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WesleyGames001/blsbot-discord.git"
+  },
+  "author": "WesleyGames001",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WesleyGames001/blsbot-discord/issues"
+  },
+  "homepage": "https://github.com/WesleyGames001/blsbot-discord#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
+}
