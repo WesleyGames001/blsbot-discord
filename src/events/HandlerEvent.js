@@ -16,7 +16,7 @@ module.exports = class interactionCreate {
         }
 
         try {
-            command.execute(interaction)
+            await command.execute(interaction)
         } catch (error) {
             console.error(error)
 

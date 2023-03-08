@@ -1,16 +1,23 @@
-const {Client, REST, Routes} = require('discord.js')
+const Database = require('./Database.js')
+const Discord = require('discord.js')
 const {readdirSync} = require('node:fs')
+
+const {DISCORD_TOKEN} = require('../config.json')
 
 class App {
 
     constructor() {
-        this.client = new Client({intents: [7796]})
-        this.client.login('ODczNjA4MjQ4MjE1ODcxNTI4.G8XUrp._g4ryXf1JrwBhzyWWaa8Nkw_aSRqTQRMklKF0k')
+        this.client = new Discord.Client({intents: [7796]})
+
+        this.database = new Database(this)
+        this.database.connect()
 
         this.registerCommands()
         this.registerEvents()
 
-        console.log('[Grupo BLS] [App]: A aplicação fez sua conexão ao Discord.')
+        this.client.login(DISCORD_TOKEN).then(() => {
+            console.log('[Grupo BLS] [App]: A aplicação fez sua conexão ao Discord.')
+        })
     }
 
     registerCommands() {
@@ -38,11 +45,11 @@ class App {
     }
 
     async update() {
-        const rest = new REST({version: '10'})
-            .setToken('ODczNjA4MjQ4MjE1ODcxNTI4.G8XUrp._g4ryXf1JrwBhzyWWaa8Nkw_aSRqTQRMklKF0k')
+        const rest = new Discord.REST({version: '10'})
+            .setToken(DISCORD_TOKEN)
 
         await rest.put(
-            Routes.applicationCommands('873608248215871528'),
+            Discord.Routes.applicationCommands('873608248215871528'),
             {
                 body: [...this.commands.values()].map(command => command.props().toJSON())
             }
